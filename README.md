@@ -10,3 +10,23 @@ This is a simple chat application backend built with Node.js, Express, and Socke
 1. Clone the repository:
    ```bash
    git clone https://github.com/0xTr3m0r/chat-app-backend.git
+   ```
+2. Create a `.env` file in the root directory and add your MongoDB connection string:
+   ```plaintext
+   MONGODB_URI=mongodb://localhost:27017/chat-app
+   JWT_SECRET=your_jwt_secret
+   PORT=5000
+   MONGODB_URI=<your-mongodb-uri>
+   CLOUDINARY_CLOUD_NAME=<your-cloud-name>
+   CLOUDINARY_API_KEY=<your-api-key>
+   CLOUDINARY_API_SECRET=<your-api-secret>
+   ```
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the server:
+   ```bash
+   npm run dev
+   ```
+   
