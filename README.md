@@ -2,7 +2,7 @@
 # Chat App Backend
 This is a simple chat application backend built with Node.js, Express, and Socket.IO. It allows users to send and receive messages in real-time.
 ## Features
-- Real-time messaging with Socket.IO
+- Real-time messaging with Socket.IO (coming soon)
 - User authentication with JWT
 - Message persistence with MongoDB
 - Basic user management (register, login, logout,update profile)
@@ -13,7 +13,6 @@ This is a simple chat application backend built with Node.js, Express, and Socke
    ```
 2. Create a `.env` file in the root directory and add your MongoDB connection string:
    ```plaintext
-   MONGODB_URI=mongodb://localhost:27017/chat-app
    JWT_SECRET=your_jwt_secret
    PORT=5000
    MONGODB_URI=<your-mongodb-uri>
