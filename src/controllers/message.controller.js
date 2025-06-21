@@ -6,7 +6,11 @@ import cloufdinary from "../lib/cloudnary.js";
 export const getUserFromSideBar = async (req , res)=>{
     try {
         const LoggedInUserId = req.user._id;
-        const filtredUsers = await User.find({_id: {$ne:LoggedInUserId}}).select("-password");
+        const filtredUsers = await User.find({
+            _id: {$ne:LoggedInUserId},
+            isBanned: false,
+            isOnline: true
+        }).select("-password");
         res.status(200).json(filtredUsers);
     } catch (error) {
         console.log("Error in getUsersFromSideBar : ",error.message);

@@ -19,6 +19,18 @@ const userSchema = new mongoose.Schema(
             type:String,
             default:"",
 
+        },
+        isOnline:{
+            type:Boolean,
+            default:false
+        },
+        isBanned:{
+            type:Boolean,
+            default:false
+        },
+        isAdmin:{
+            type:Boolean,
+            default:false   
         }
     },
     { timestamps:true}

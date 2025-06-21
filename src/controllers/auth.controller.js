@@ -67,18 +67,24 @@ export const login = async (req, res) => {
         if (!user) {
             return res.status(400).json({ error: "Invalid credentials!" });
         }
+        if (user.isBanned){
+            return res.status(403).json({error : "You are banned from using this application!"});
+        }
         //check if password is correct
         const isMatch = await bcrypt.compare(password, user.password);
         if (!isMatch) {
             return res.status(400).json({ error: "Invalid credentials!" });
         }
+        user.isOnline = true; // set user as online
         
         generateToken(user._id,res) 
         res.status(200).json({
             _id: user._id,
             fullName: user.fullName,
             email: user.email,
-            profilePic: user.profilePic
+            profilePic: user.profilePic,
+            isOnline: user.isOnline,
+            isAdmin: user.isAdmin,
         });
     } catch (error) {
         console.log("Error in signup controller", error.message);
@@ -88,10 +94,11 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
     try {
+
         // Clear the cookie by setting its maxAge to 0
         res.cookie("jwt","",{maxAge:0})
         res.status(200).json({message:"Logged out successfully"})
-        
+        req.user.isOnline = false; // set user as offline
     } catch (error) {
         console.log(`Error while logging out : ${error.message}`);
         res.status(500).json({message:"Internal server error"})
@@ -123,3 +130,4 @@ export const updateProfile = async (req,res)=>{
 
 
 }
+
