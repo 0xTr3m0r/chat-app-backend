@@ -48,6 +48,10 @@ export const signup = async (req, res) => {
             profilePic: newUser.profilePic
         });
     } catch (error) {
+        // Handle duplicate key error (E11000)
+        if (error.code === 11000 && error.keyPattern && error.keyPattern.email) {
+            return res.status(400).json({ error: "Email already used, try another one!" });
+        }
         console.log("Error in signup controller", error.message);
         res.status(500).json({ error: "Internal server error" });
     }
